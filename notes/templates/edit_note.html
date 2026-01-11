@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Notes</title>
+</head>
+<body>
+    <form  method="post">
+        {% csrf_token %}<label >Title:</label>
+        <input type="text" name="n_title" value="{{note.title}}">
+        <br><br>
+        <label>Content:</label>
+        <textarea name="n_content">{{note.content}}</textarea>
+        <br><br>
+        <button type="submit">Update Note</button>
+    </form>
+</body>
+</html>
