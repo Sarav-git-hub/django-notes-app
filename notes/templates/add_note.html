@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Notes</title>
-</head>
-<body>
-    <form  method="post">
-        {% csrf_token %}<label >Title:</label>
-        <input type="text" name="n_title"> <br><br>
-        <label>Content:</label>
-        <textarea name="n_content"></textarea>
-        <br><br>
-        <button type="submit">Save Note</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow border-0 mt-5">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Create New Note</h4>
+            </div>
+            <div class="card-body p-4">
+                <form  method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-bold">Note Title</label>
+                       <input type="text" name="n_title" id="title" class="form-control" placeholder="Enter title here" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label fw-bold">Note Content</label>
+                        <textarea name="n_content" id="content" class="form-control" rows="5" placeholder="Write your thoughts.." required></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">Save Note</button>
+                        <a href="{% url 'index' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

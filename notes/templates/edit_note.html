@@ -1,19 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Notes</title>
-</head>
-<body>
-    <form  method="post">
-        {% csrf_token %}<label >Title:</label>
-        <input type="text" name="n_title" value="{{note.title}}">
-        <br><br>
-        <label>Content:</label>
-        <textarea name="n_content">{{note.content}}</textarea>
-        <br><br>
-        <button type="submit">Update Note</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow border-0 mt-5">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Edit your note</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-bold">Note Title</label>
+                        <input type="text" name="n_title" id="title" class="form-control" value="{{note.title}}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label fw-bold">Note Content</label>
+                        <textarea name="n_content" id="content" class="form-control" rows="5" required>{{note.content}}</textarea>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">Update Note</button>
+                        <a href="{% url 'index' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

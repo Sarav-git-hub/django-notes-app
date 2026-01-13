@@ -17,10 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from notes import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('',views.index,name='index'),
-    path('add/',views.create_note,name='add_note'),
+    path('add/',views.create_note,name='create_note'),
+    path('pin/<int:note_id>/',views.toggle_pin,name='toggle_pin'),
     path('delete/<int:note_id>/',views.delete_note,name='delete_note'),
     path('edit/<int:note_id>/',views.edit_note,name='edit_note'),
+    path('register/',views.register,name='register'),
+    path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
+    path('logout/',auth_views.LogoutView.as_view(),name='logout'),
 ]
